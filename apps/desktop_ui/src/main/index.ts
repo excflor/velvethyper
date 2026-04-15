@@ -111,11 +111,27 @@ app.whenReady().then(() => {
 
   ipcMain.handle('rotate-profile', async () => {
      console.log('[Main] Rotating Hardware Profile...')
-     const manufacturers = ['Gigabyte Technology', 'Micro-Star International', 'ASUSTeK COMPUTER INC.', 'EVGA Corporation'];
-     const models = ['Z790 AORUS ELITE', 'MPG Z690 FORCE', 'ROG MAXIMUS XIII', 'X570 FTW3'];
-     const randM = manufacturers[Math.floor(Math.random() * manufacturers.length)];
-     const randModel = models[Math.floor(Math.random() * models.length)];
-     return { success: true, profile: `${randM} / ${randModel}` }
+     
+     const libsPath = getLibsPath();
+     const profilesPath = join(libsPath, 'spoofer_core/assets/hardware_profiles.json');
+     
+     try {
+       const rawData = fs.readFileSync(profilesPath, 'utf-8');
+       const db = JSON.parse(rawData);
+       const profiles = db.profiles || [];
+       
+       if (profiles.length === 0) throw new Error("No profiles available");
+       
+       const p = profiles[Math.floor(Math.random() * profiles.length)];
+       return { 
+         success: true, 
+         profile: `${p.manufacturer} / ${p.model}`,
+         type: p.type
+       }
+     } catch (error: any) {
+       console.error(`[Main] Profile Rotation Failed: ${error.message}`);
+       return { success: false, profile: 'Error Loading Profile' }
+     }
   })
 
   let watchdog: fs.FSWatcher | null = null

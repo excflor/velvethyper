@@ -97,31 +97,56 @@ if __name__ == "__main__":
     import sys
     import uuid
     import random
+    import json
+    from pathlib import Path
 
     if len(sys.argv) < 2:
         print("Usage: python vmx_hardener.py <path_to_vmx>")
         sys.exit(1)
 
-    vmx_target = sys.argv[1]
-    hardener = VMXHardener(vmx_target)
+    # 0. Locate Hardware Profiles Database
+    script_dir = Path(__file__).parent
+    profiles_path = script_dir / "assets" / "hardware_profiles.json"
     
-    # 1. Load existing config
-    hardener.read_config()
+    if not profiles_path.exists():
+        print(f"Error: Profile database missing at {profiles_path}")
+        sys.exit(1)
+
+    with open(profiles_path, "r") as f:
+        db = json.load(f)
+        profiles = db.get("profiles", [])
+
+    if not profiles:
+        print("Error: No profiles found in database.")
+        sys.exit(1)
+
+    # 1. Select a Random Hardware Profile
+    p = random.choice(profiles)
+    mfr = p["manufacturer"]
     
-    # 2. Generate a random "High-Tier" Stealth Profile
+    # 2. Generate Real-World Style Identifiers
+    serial_tag = mfr.split()[0].upper()[:4]
+    if "ASUS" in serial_tag: serial_tag = "ASUS"
+    elif "GIGA" in serial_tag: serial_tag = "GIGA"
+    elif "MICR" in serial_tag: serial_tag = "MSI"
+
     stealth_profile = {
-        "model": "ROG MAXIMUS XIII EXTREME",
-        "serial": f"ASUS-{uuid.uuid4().hex[:12].upper()}",
+        "manufacturer": mfr,
+        "model": p["model"],
+        "bios_version": p["bios_version"],
+        "bios_date": p["bios_date"],
+        "serial": f"{serial_tag}-{uuid.uuid4().hex[:12].upper()}",
         "board_id": f"MB-{uuid.uuid4().hex[:8].upper()}",
         "hardware_uuid": str(uuid.uuid4()),
-        "bios_version": "3801",
-        "bios_date": "03/15/2024",
-        "manufacturer": "ASUSTeK COMPUTER INC.",
-        "mac_address": f"00:50:56:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}"
+        "mac_address": f"{p['mac_oui']}:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}"
     }
-    
-    # 3. Apply and Write
+
+    # 3. Apply Hardening
+    vmx_target = sys.argv[1]
+    hardener = VMXHardener(vmx_target)
+    hardener.read_config()
     hardener.apply_stealth_profile(stealth_profile)
     hardener.write_config()
     
     print(f"[*] VelvetHyper Hardening Success: 42 flags applied to {vmx_target}")
+    print(f"[*] Profile Applied: {mfr} / {p['model']} ({p['type']})")

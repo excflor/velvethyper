@@ -1,0 +1,60 @@
+{
+  "profiles": [
+    {
+      "manufacturer": "ASUSTeK COMPUTER INC.",
+      "model": "ROG MAXIMUS XIII EXTREME",
+      "bios_version": "3801",
+      "bios_date": "03/15/2024",
+      "mac_oui": "00:50:56",
+      "type": "Enthusiast"
+    },
+    {
+      "manufacturer": "Micro-Star International Co., Ltd.",
+      "model": "MPG Z690 CARBON WIFI",
+      "bios_version": "A.B0",
+      "bios_date": "11/22/2024",
+      "mac_oui": "D8:BB:C1",
+      "type": "Enthusiast"
+    },
+    {
+      "manufacturer": "Gigabyte Technology Co., Ltd.",
+      "model": "Z790 AORUS ELITE AX",
+      "bios_version": "F10",
+      "bios_date": "01/10/2025",
+      "mac_oui": "1C:1B:0D",
+      "type": "Enthusiast"
+    },
+    {
+      "manufacturer": "Alienware",
+      "model": "Aurora R15",
+      "bios_version": "1.0.12",
+      "bios_date": "06/05/2024",
+      "mac_oui": "00:26:B9",
+      "type": "OEM"
+    },
+    {
+      "manufacturer": "HP",
+      "model": "OMEN by HP 45L",
+      "bios_version": "F.21",
+      "bios_date": "09/12/2024",
+      "mac_oui": "3C:D9:2B",
+      "type": "OEM"
+    },
+    {
+      "manufacturer": "Lenovo",
+      "model": "Legion T7 34IMZ5",
+      "bios_version": "O4LKT19A",
+      "bios_date": "12/01/2024",
+      "mac_oui": "6C:2B:59",
+      "type": "OEM"
+    },
+    {
+      "manufacturer": "EVGA Corporation",
+      "model": "X570 FTW3",
+      "bios_version": "2.04",
+      "bios_date": "02/20/2024",
+      "mac_oui": "00:1F:D0",
+      "type": "Enthusiast"
+    }
+  ]
+}
