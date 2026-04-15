@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: apps-desktop-ui
+appId: com.velvethyper.suite
+productName: VelvetHyper
 icon: build/icon.ico
 directories:
   buildResources: build

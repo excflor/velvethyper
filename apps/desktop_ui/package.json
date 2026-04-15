@@ -1,7 +1,7 @@
 {
-  "name": "apps-desktop-ui",
+  "name": "velvethyper",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "Pro-Grade Hypervisor Stealth & Orchestration Suite",
   "main": "./out/main/index.js",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
