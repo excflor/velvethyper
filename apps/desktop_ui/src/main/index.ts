@@ -85,17 +85,42 @@ app.whenReady().then(() => {
   let watchdog: fs.FSWatcher | null = null
 
   ipcMain.handle('build-production', async () => {
-    console.log('[Main] Initiating Production Build (Ghost Launcher)...')
-    // In a real scenario, this would:
-    // 1. Run 'make' in libs/native_utils
-    // 2. Package sanitizer.exe, verifier.exe, launcher.exe into a zip or SFX
-    return { success: true, path: 'build/VelvetHyper_Guest_Stealth.zip' }
+    const { exec } = require('child_process');
+    const util = require('util');
+    const execPromise = util.promisify(exec);
+    
+    // Project root is 3 levels up from apps/desktop_ui/src/main
+    const projectRoot = join(__dirname, '../../../../'); 
+    const nativeUtilsDir = join(projectRoot, 'libs/native_utils');
+    const buildDir = join(projectRoot, 'build');
+
+    console.log(`[Main] Compiling Ghost Launcher in: ${nativeUtilsDir}`);
+    
+    try {
+      // 1. Ensure build directory exists
+      if (!fs.existsSync(buildDir)) fs.mkdirSync(buildDir);
+
+      // 2. Run make in libs/native_utils
+      await execPromise('make', { cwd: nativeUtilsDir });
+
+      // 3. Copy files to build directory
+      const filesToCopy = ['launcher.exe', 'sanitizer.exe', 'verifier.exe'];
+      for (const file of filesToCopy) {
+        fs.copyFileSync(join(nativeUtilsDir, file), join(buildDir, file));
+      }
+
+      console.log(`[Main] Build SUCCESS. Files available in: ${buildDir}`);
+      return { success: true, path: 'build/' };
+    } catch (error: any) {
+      console.error(`[Main] Build FAILED: ${error.message}`);
+      return { success: false, message: error.message };
+    }
   })
 
   ipcMain.handle('toggle-watchdog', (_, active: boolean) => {
     console.log(`[Main] Watchdog state: ${active}`)
     if (active) {
-      const watchPath = join(app.getAppPath(), '../../') // Project root
+      const watchPath = join(__dirname, '../../../../'); // Project root
       watchdog = fs.watch(watchPath, (_eventType, filename) => {
         if (filename && filename.endsWith('.vmx')) {
           console.log(`[Watchdog] Detected change in ${filename}. Re-applying hardening...`)
