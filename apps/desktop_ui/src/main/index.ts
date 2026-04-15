@@ -4,6 +4,12 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.ico?asset'
 
+const getLibsPath = (): string => {
+  return app.isPackaged
+    ? join(process.resourcesPath, 'libs')
+    : join(__dirname, '../../../../libs')
+}
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -72,17 +78,26 @@ app.whenReady().then(() => {
     const util = require('util');
     const execPromise = util.promisify(exec);
     
-    // Path to python engine
-    const projectRoot = join(__dirname, '../../../../'); 
-    const enginePath = join(projectRoot, 'libs/spoofer_core/vmx_hardener.py');
+    // Dynamic Path Resolution
+    const libsPath = getLibsPath();
+    const enginePath = join(libsPath, 'spoofer_core/vmx_hardener.py');
 
     console.log(`[Main] Hardening VM: ${vmxPath} using ${enginePath}`);
     
     try {
       if (!vmxPath) throw new Error("No VMX file selected");
       
+      const isPackaged = app.isPackaged;
+      const baseDir = isPackaged 
+        ? process.resourcesPath 
+        : join(__dirname, '../../../../');
+
       // Execute the python script with the vmx path as argument
-      const { stdout, stderr } = await execPromise(`python "${enginePath}" "${vmxPath}"`);
+      // Inject PYTHONPATH so it can find 'libs.*' internal modules
+      const { stdout, stderr } = await execPromise(`python "${enginePath}" "${vmxPath}"`, {
+        env: { ...process.env, PYTHONPATH: baseDir },
+        cwd: baseDir
+      });
       
       if (stderr && !stdout) throw new Error(stderr);
       
@@ -110,10 +125,10 @@ app.whenReady().then(() => {
     const util = require('util');
     const execPromise = util.promisify(exec);
     
-    // Project root is 3 levels up from apps/desktop_ui/src/main
-    const projectRoot = join(__dirname, '../../../../'); 
-    const nativeUtilsDir = join(projectRoot, 'libs/native_utils');
-    const buildDir = join(projectRoot, 'build');
+    // Dynamic Path Resolution
+    const libsPath = getLibsPath();
+    const nativeUtilsDir = join(libsPath, 'native_utils');
+    const buildDir = join(app.getPath('userData'), 'build');
 
     console.log(`[Main] Compiling Ghost Launcher in: ${nativeUtilsDir}`);
     
@@ -141,7 +156,7 @@ app.whenReady().then(() => {
   ipcMain.handle('toggle-watchdog', (_, active: boolean) => {
     console.log(`[Main] Watchdog state: ${active}`)
     if (active) {
-      const watchPath = join(__dirname, '../../../../'); // Project root
+      const watchPath = app.getPath('userData'); // Watch local user data for temp vmx changes
       watchdog = fs.watch(watchPath, (_eventType, filename) => {
         if (filename && filename.endsWith('.vmx')) {
           console.log(`[Watchdog] Detected change in ${filename}. Re-applying hardening...`)

@@ -42,3 +42,11 @@ npmRebuild: false
 publish:
   provider: generic
   url: https://example.com/auto-updates
+extraResources:
+  - from: ../../libs
+    to: libs
+    filter:
+      - "**/*"
+      - "!**/__pycache__"
+      - "!**/*.o"
+      - "!**/*.exe"
