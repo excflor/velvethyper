@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 const api = {
-  hardenVM: () => ipcRenderer.invoke('harden-vm'),
+  hardenVM: (vmxPath: string) => ipcRenderer.invoke('harden-vm', vmxPath),
   rotateProfile: () => ipcRenderer.invoke('rotate-profile'),
   toggleWatchdog: (active: boolean) => ipcRenderer.invoke('toggle-watchdog', active),
   buildProduction: () => ipcRenderer.invoke('build-production'),

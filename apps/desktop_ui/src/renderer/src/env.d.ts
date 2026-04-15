@@ -9,7 +9,7 @@ interface Window {
     }
   };
   api: {
-    hardenVM: () => Promise<{ success: boolean; message: string }>;
+    hardenVM: (vmxPath: string) => Promise<{ success: boolean; message: string }>;
     rotateProfile: () => Promise<{ success: boolean; profile: string }>;
     toggleWatchdog: (active: boolean) => Promise<{ status: string }>;
     buildProduction: () => Promise<{ success: boolean; path: string }>;
