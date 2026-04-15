@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/excflor/velvethyper/compare/v1.0.0...v1.1.0) (2026-04-15)
+
+
+### Features
+
+* **core:** specialized hardware identity database expanded to 20 pro gaming profiles (Desktop, Laptop, Workstation) ([b0d72dc](https://github.com/excflor/velvethyper/commit/b0d72dc2ae5a0d679ecf6a8fdd37cb212aafc574))
+* **core:** transitioned to dynamic, data-driven hardware profile orchestration with mixed Enthusiast/OEM database ([fd23a8b](https://github.com/excflor/velvethyper/commit/fd23a8b0792ebdf860ceb508629d26f61ed668d3))
+* **ui:** implemented auto-stealth detection to instantly verify hardening status upon VMX selection ([1e7f73f](https://github.com/excflor/velvethyper/commit/1e7f73f448473ec0085e5e9e77b76a926dbcd397))
+* **ui:** integrated dynamic app version display into the dashboard header from the single source of truth (package.json) ([7bccbaa](https://github.com/excflor/velvethyper/commit/7bccbaaddf9cb861fd98a3030abff4676f55391c))
+* **ui:** synchronized deep hardening activity logs between Python engine and Command Center dashboard ([80d08ec](https://github.com/excflor/velvethyper/commit/80d08ecca9e8c3ee2b13ed5bc88f62c0154f1e23))
+
+
+### Bug Fixes
+
+* **core:** added Python entry point to vmx_hardener for automated dashboard execution ([66bd835](https://github.com/excflor/velvethyper/commit/66bd835221991f54d54f01386a82516286f8b349))
+* **core:** injected dynamic PYTHONPATH and set CWD for Python execution in production context to resolve module resolution errors ([adaa1b3](https://github.com/excflor/velvethyper/commit/adaa1b303b6c045bb7fcf879f834442b4e86f2ba))
+* **ui:** added global icon property to ensure portable executable branding consistency ([2ba8b75](https://github.com/excflor/velvethyper/commit/2ba8b7511d77bd0e249b5abaa55ddeaf048d0053))
+* **ui:** explicitly set win.icon path in builder config to resolve default icon fallback in portable build ([8168766](https://github.com/excflor/velvethyper/commit/8168766171b60b80fdecb2de5a4afac43993d48e))
+
 ## 1.0.0 (2026-04-15)
 
 
