@@ -1,0 +1,37 @@
+name: Release VelvetHyper
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: apps/desktop_ui/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: apps/desktop_ui
+        run: npm install
+
+      - name: Build Portable Windows Executable
+        working-directory: apps/desktop_ui
+        run: npm run build:win
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: apps/desktop_ui/dist/*.exe
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

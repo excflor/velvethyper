@@ -8,7 +8,7 @@ UI_DIR = apps/desktop_ui
 NATIVE_DIR = libs/native_utils
 ENGINE_DIR = libs/spoofer_core
 
-.PHONY: help install dev build-ui build-native clean harden
+.PHONY: help install dev build-ui build-native clean harden release
 
 help:
 	@echo "VelvetHyper: Stealth Virtualization Suite"
@@ -18,6 +18,7 @@ help:
 	@echo "make build-ui      - Package the Portable Windows Executable"
 	@echo "make build-native  - Manually compile Guest Stealth Tools (MinGW)"
 	@echo "make harden        - Manual VMX hardening (requires VMX=path/to/vmx)"
+	@echo "make release       - Bump version, create tag, and push to GitHub"
 	@echo "make clean         - Deep cleanup of all build and cache files"
 
 install:
@@ -41,6 +42,12 @@ build-native:
 harden:
 	@echo "[*] Triggering manual hardening engine..."
 	$(PYTHON) $(ENGINE_DIR)/vmx_hardener.py "$(VMX)"
+
+release:
+	@echo "[*] Orchestrating new production release..."
+	cd $(UI_DIR) && $(NPM) run release
+	@echo "[*] Synchronizing release tags with GitHub..."
+	git push --follow-tags origin main
 
 clean:
 	@echo "[*] Performing forensic cleanup..."
