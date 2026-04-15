@@ -1,3 +1,16 @@
-# VelvetHyper Requirements
-# Standard Library only for now (json, random, uuid, os, re)
-# Future: requests (for remote profile sync), flask/fastapi (for UI backend)
+# VelvetHyper: Pro-Grade Python Dependencies
+
+# Core Utilities
+psutil==5.9.6                   # Advanced process management and watchdog monitoring
+lxml==5.1.0                     # High-performance XML/ACPI config parsing
+PyYAML==6.0.1                  # Structured hardware profile formatting
+
+# Engineering & Quality
+pytest==7.4.3                   # Master test orchestration
+pytest-cov==4.1.0               # Coverage analysis for stealth flags
+flake8==6.1.0                   # Production-grade linting
+black==23.11.0                  # Standardized code formatting
+
+# Optional: Networking (Phase 6 Expansion)
+# scapy==2.5.0                  # Advanced packet manipulation
+# requests==2.31.0               # Profile sync / updates
