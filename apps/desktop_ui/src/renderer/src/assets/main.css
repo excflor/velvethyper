@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-velvet-bg text-velvet-text font-sans antialiased selection:bg-velvet-accent/30;
+  }
+}
+
+@layer components {
+  .bento-card {
+    @apply bg-velvet-card/40 border border-white/5 backdrop-blur-md rounded-2xl p-6 hover:border-velvet-accent/30 transition-all duration-300 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-velvet-accent text-velvet-bg font-bold py-3 px-6 rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200 shadow-lg shadow-velvet-accent/20;
+  }
+
+  .status-badge {
+    @apply flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border;
+  }
+
+  .status-online {
+    @apply bg-velvet-accent/10 border-velvet-accent/30 text-velvet-accent;
+  }
+
+  .status-offline {
+    @apply bg-red-500/10 border-red-500/30 text-red-500;
+  }
+}
+
+/* Custom scrollbar for stealth look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-velvet-card rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-velvet-primary;
+}

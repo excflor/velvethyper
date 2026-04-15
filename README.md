@@ -13,15 +13,20 @@
 - `/profiles`: Storage for your hardware identities (JSON).
 - `/docs`: Detailed architecture and roadmap.
 
-## Quick Start (Phase 1)
-1.  **Configure**: Place your `.vmx` file in the root or provide a path.
-2.  **Run**:
-    ```bash
-    make run-cli
-    ```
-3.  **Result**: Your `.vmx` is now hardened and ready to launch.
+## Implementation Status
+- [x] **Phase 1: Core Engine** (Python logic & VMX hardening)
+- [x] **Phase 2: Firmware & Identity** (CPUID, SMBIOS, ACPI)
+- [x] **Phase 3: Guest & Verifier** (C++ Sanitizer and Stealth Audit)
+- [ ] **Phase 4: One-Click UI** (Electron Dashboard) [IN PROGRESS]
 
-## Requirements
+## Quick Start
+1.  **Configure**: Place your `.vmx` file in the root.
+2.  **Harden**: `make run-cli`
+3.  **Module C: The Sanitizer (C++) [DONE]**
+    - One-time execution inside the guest to scrub registry markers and driver traces.
+    - Includes `VelvetVerifier` for in-guest stealth auditing.
+4.  **Module D: The Dashboard (Electron/React) [NEXT]**
+    - Professional "One-Click" interface to manage profiles, automate VMware lifecycle, and verify stealth status.
 - Python 3.8+
 - VMware Workstation/Player
 - Make (optional, but recommended)
