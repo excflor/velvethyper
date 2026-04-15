@@ -97,24 +97,25 @@ function App(): React.ReactElement {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col relative overflow-hidden">
-        {/* Sticky Header Background (Masks window controls when scrolling) */}
-        <div className="absolute top-0 left-0 right-0 h-28 bg-velvet-bg/80 backdrop-blur-xl z-30 border-b border-white/5 pointer-events-none" />
-        
-        <div className="flex-1 overflow-y-auto custom-scrollbar p-8 pt-10 z-20">
-          <header className="flex justify-between items-end mb-10 relative z-40">
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight mb-2">
+        {/* Sticky Header (Includes Title & Status Mask) */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-velvet-bg/80 backdrop-blur-xl z-30 border-b border-white/5 px-8 pt-10 flex justify-between items-end pb-4">
+           <div>
+              <h1 className="text-4xl font-bold tracking-tight mb-1">
                 {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
               </h1>
-              <p className="text-velvet-muted">Pro-Grade Stealth Virtualization & Anti-Cheat Evasion</p>
+              <p className="text-velvet-muted text-xs uppercase tracking-widest font-bold opacity-60">
+                {activeTab === 'dashboard' ? 'Orchestration Hub' : 'System Management'}
+              </p>
             </div>
-            <div className="flex flex-col items-end gap-3 translate-y-2">
+            <div className="flex flex-col items-end gap-2">
               <div className={`status-badge ${isHardened ? 'status-online' : 'status-offline'}`}>
                  <div className={`w-2 h-2 rounded-full ${isHardened ? 'bg-velvet-accent' : 'bg-red-500'} animate-pulse`} />
                  {isHardened ? 'SYSTEM STEALTH: ACTIVE' : 'SYSTEM STEALTH: INACTIVE'}
               </div>
             </div>
-          </header>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-8 pt-40 z-20">
 
           {activeTab === 'dashboard' && (
             <div className="grid grid-cols-12 gap-6 auto-rows-[180px]">
@@ -164,17 +165,17 @@ function App(): React.ReactElement {
                 </div>
               </div>
 
-              {/* System Profile Card */}
+              {/* System Profile Card (Dashboard version - Current Session Focus) */}
               <div className="col-span-4 row-span-2 bento-card border-l-4 border-velvet-accent flex flex-col">
                 <div className="flex-1">
                   <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                     <Cpu className="text-velvet-accent" /> Current Profile
+                     <Cpu className="text-velvet-accent" /> Session Identity
                   </h2>
                   <div className="space-y-4">
-                     <ProfileItem label="Manufacturer" value={currentProfile.manufacturer} />
-                     <ProfileItem label="Model" value={currentProfile.model} />
-                     <ProfileItem label="Serial" value={currentProfile.serial} />
-                     <ProfileItem label="MAC" value={currentProfile.mac} />
+                     <ProfileItem label="Current Manufacturer" value={currentProfile.manufacturer} />
+                     <ProfileItem label="Target Model" value={currentProfile.model} />
+                     <ProfileItem label="HWID Serial" value={currentProfile.serial} />
+                     <ProfileItem label="Spoofed MAC" value={currentProfile.mac} />
                   </div>
                 </div>
                 <div className="mt-auto pt-6">
@@ -182,15 +183,15 @@ function App(): React.ReactElement {
                     onClick={handleRotateProfile}
                     className="w-full py-3 bg-white/5 rounded-xl text-sm font-semibold hover:bg-white/10 transition-all active:scale-95 border border-white/5 shadow-inner"
                   >
-                    Rotate Profile
+                    Generate New Identity
                   </button>
                 </div>
               </div>
 
-              {/* Console / Logs (Bento large footer) */}
+              {/* Console / Logs (Dashboard version - Recent Activity Focus) */}
               <div className="col-span-12 row-span-2 bento-card bg-black/40 border-white/5 p-0 overflow-hidden flex flex-col cursor-auto">
                  <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/5">
-                    <h3 className="text-sm font-mono font-bold tracking-widest text-velvet-muted italic">REAL-TIME ENGINE TELEMETRY</h3>
+                    <h3 className="text-sm font-mono font-bold tracking-widest text-velvet-muted italic">SESSION TELEMETRY (LATEST)</h3>
                     <div className="flex gap-2">
                        <div className="w-2 h-2 rounded-full bg-red-500/50" />
                        <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
