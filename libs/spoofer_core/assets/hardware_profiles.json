@@ -6,7 +6,7 @@
       "bios_version": "3801",
       "bios_date": "03/15/2024",
       "mac_oui": "00:50:56",
-      "type": "Enthusiast"
+      "type": "Enthusiast Desktop"
     },
     {
       "manufacturer": "Micro-Star International Co., Ltd.",
@@ -14,7 +14,7 @@
       "bios_version": "A.B0",
       "bios_date": "11/22/2024",
       "mac_oui": "D8:BB:C1",
-      "type": "Enthusiast"
+      "type": "Enthusiast Desktop"
     },
     {
       "manufacturer": "Gigabyte Technology Co., Ltd.",
@@ -22,7 +22,7 @@
       "bios_version": "F10",
       "bios_date": "01/10/2025",
       "mac_oui": "1C:1B:0D",
-      "type": "Enthusiast"
+      "type": "Enthusiast Desktop"
     },
     {
       "manufacturer": "Alienware",
@@ -30,7 +30,7 @@
       "bios_version": "1.0.12",
       "bios_date": "06/05/2024",
       "mac_oui": "00:26:B9",
-      "type": "OEM"
+      "type": "OEM Desktop"
     },
     {
       "manufacturer": "HP",
@@ -38,7 +38,7 @@
       "bios_version": "F.21",
       "bios_date": "09/12/2024",
       "mac_oui": "3C:D9:2B",
-      "type": "OEM"
+      "type": "OEM Desktop"
     },
     {
       "manufacturer": "Lenovo",
@@ -46,7 +46,7 @@
       "bios_version": "O4LKT19A",
       "bios_date": "12/01/2024",
       "mac_oui": "6C:2B:59",
-      "type": "OEM"
+      "type": "OEM Desktop"
     },
     {
       "manufacturer": "EVGA Corporation",
@@ -54,7 +54,111 @@
       "bios_version": "2.04",
       "bios_date": "02/20/2024",
       "mac_oui": "00:1F:D0",
-      "type": "Enthusiast"
+      "type": "Enthusiast Desktop"
+    },
+    {
+      "manufacturer": "Razer",
+      "model": "Blade 16 (2024) - RZ09-0510",
+      "bios_version": "2.01",
+      "bios_date": "05/18/2024",
+      "mac_oui": "00:1C:C0",
+      "type": "Enthusiast Laptop"
+    },
+    {
+      "manufacturer": "Micro-Star International Co., Ltd.",
+      "model": "Raider GE78 HX 13V",
+      "bios_version": "E17S1IMS.112",
+      "bios_date": "08/10/2024",
+      "mac_oui": "00:D8:61",
+      "type": "Enthusiast Laptop"
+    },
+    {
+      "manufacturer": "ASUSTeK COMPUTER INC.",
+      "model": "ROG Strix SCAR 18 (2024)",
+      "bios_version": "312",
+      "bios_date": "10/05/2024",
+      "mac_oui": "08:62:66",
+      "type": "Enthusiast Laptop"
+    },
+    {
+      "manufacturer": "Dell Inc.",
+      "model": "Precision 7780",
+      "bios_version": "1.10.0",
+      "bios_date": "12/12/2024",
+      "mac_oui": "EC:B1:D7",
+      "type": "Workstation"
+    },
+    {
+      "manufacturer": "Gigabyte Technology Co., Ltd.",
+      "model": "B650 AORUS ELITE AX ICE",
+      "bios_version": "FA3",
+      "bios_date": "02/28/2025",
+      "mac_oui": "E0:D5:5E",
+      "type": "Enthusiast Desktop"
+    },
+    {
+      "manufacturer": "Micro-Star International Co., Ltd.",
+      "model": "MAG B550 TOMAHAWK MAX WIFI",
+      "bios_version": "2.D0",
+      "bios_date": "01/15/2024",
+      "mac_oui": "D8:BB:C1",
+      "type": "Enthusiast Desktop"
+    },
+    {
+      "manufacturer": "ASRock Inc.",
+      "model": "X670E Taichi Carrera",
+      "bios_version": "2.10",
+      "bios_date": "11/02/2024",
+      "mac_oui": "70:85:C2",
+      "type": "Enthusiast Desktop"
+    },
+    {
+      "manufacturer": "Lenovo",
+      "model": "ThinkStation P620",
+      "bios_version": "S07KT59A",
+      "bios_date": "07/19/2024",
+      "mac_oui": "D4:81:D7",
+      "type": "Workstation"
+    },
+    {
+      "manufacturer": "Acer",
+      "model": "Predator Orion 7000",
+      "bios_version": "R01-A4",
+      "bios_date": "03/10/2024",
+      "mac_oui": "08:9E:01",
+      "type": "OEM Desktop"
+    },
+    {
+      "manufacturer": "Framework",
+      "model": "Laptop 16 (AMD Ryzen 7040 Series)",
+      "bios_version": "03.02",
+      "bios_date": "01/22/2025",
+      "mac_oui": "FC:B1:E3",
+      "type": "Enthusiast Laptop"
+    },
+    {
+      "manufacturer": "Micro-Star International Co., Ltd.",
+      "model": "Stealth 16 Mercedes-AMG Motorsport",
+      "bios_version": "E15F1IMS.106",
+      "bios_date": "04/05/2024",
+      "mac_oui": "00:D8:61",
+      "type": "Enthusiast Laptop"
+    },
+    {
+      "manufacturer": "NZXT",
+      "model": "N7 Z790",
+      "bios_version": "6.01",
+      "bios_date": "08/18/2024",
+      "mac_oui": "D0:D0:03",
+      "type": "Enthusiast Desktop"
+    },
+    {
+      "manufacturer": "Alienware",
+      "model": "m18 R1",
+      "bios_version": "1.13.1",
+      "bios_date": "11/20/2024",
+      "mac_oui": "00:26:B9",
+      "type": "OEM Laptop"
     }
   ]
 }
