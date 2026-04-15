@@ -13,5 +13,6 @@ interface Window {
     rotateProfile: () => Promise<{ success: boolean; profile: string }>;
     toggleWatchdog: (active: boolean) => Promise<{ status: string }>;
     buildProduction: () => Promise<{ success: boolean; path: string }>;
+    selectVMX: () => Promise<string | null>;
   };
 }

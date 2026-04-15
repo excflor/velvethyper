@@ -5,6 +5,7 @@ function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isHardened, setIsHardened] = useState(false);
   const [isWatchdogActive, setIsWatchdogActive] = useState(false);
+  const [vmxPath, setVmxPath] = useState<string | null>(null);
   const [logs, setLogs] = useState<string[]>(["[*] System Initialized.", "[*] Ready for hardening."]);
 
   const addLog = (msg: string) => {
@@ -45,6 +46,18 @@ function App(): JSX.Element {
     }
   };
 
+  const handleSelectVMX = async () => {
+    try {
+      const path = await window.api.selectVMX();
+      if (path) {
+        setVmxPath(path);
+        addLog(`[TARGET] Selected VMX: ${path.split('\\').pop()}`);
+      }
+    } catch (err) {
+      addLog(`ERROR: ${err}`);
+    }
+  };
+
   return (
     <div className="flex h-screen bg-velvet-bg text-velvet-text overflow-hidden font-sans">
       {/* Seamless Titlebar (Draggable) */}
@@ -77,7 +90,14 @@ function App(): JSX.Element {
             </h1>
             <p className="text-velvet-muted">Pro-Grade Stealth Virtualization & Anti-Cheat Evasion</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col items-end gap-3">
+            <button 
+              onClick={handleSelectVMX}
+              className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm font-medium hover:bg-white/10 transition-all text-velvet-muted hover:text-white"
+            >
+              <Box size={16} className="text-velvet-accent" />
+              {vmxPath ? vmxPath.split('\\').pop() : "SELECT TARGET VM"}
+            </button>
             <div className={`status-badge ${isHardened ? 'status-online' : 'status-offline'}`}>
                <div className={`w-2 h-2 rounded-full ${isHardened ? 'bg-velvet-accent' : 'bg-red-500'} animate-pulse`} />
                {isHardened ? 'SYSTEM STEALTH: ACTIVE' : 'SYSTEM STEALTH: INACTIVE'}

@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import * as fs from 'fs'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
@@ -57,6 +57,16 @@ app.whenReady().then(() => {
   })
 
   // IPC: VelvetHyper Orchestration
+  ipcMain.handle('select-vmx', async () => {
+    const { canceled, filePaths } = await dialog.showOpenDialog({
+       title: 'Select VMware Configuration (.vmx)',
+       properties: ['openFile'],
+       filters: [{ name: 'VMware Config', extensions: ['vmx'] }]
+    })
+    if (canceled) return null
+    return filePaths[0]
+  })
+
   ipcMain.handle('harden-vm', async () => {
     // Logic to spawn python apps/cli_engine/main.py
     console.log('[Main] Triggering VM Hardening...')

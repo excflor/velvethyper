@@ -1,12 +1,12 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
-// Custom APIs for renderer
 const api = {
   hardenVM: () => ipcRenderer.invoke('harden-vm'),
   rotateProfile: () => ipcRenderer.invoke('rotate-profile'),
   toggleWatchdog: (active: boolean) => ipcRenderer.invoke('toggle-watchdog', active),
-  buildProduction: () => ipcRenderer.invoke('build-production')
+  buildProduction: () => ipcRenderer.invoke('build-production'),
+  selectVMX: () => ipcRenderer.invoke('select-vmx')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
