@@ -2,6 +2,13 @@
 
 interface Window {
   electron: {
+    process: {
+      versions: {
+        electron: string;
+        chrome: string;
+        node: string;
+      }
+    };
     ipcRenderer: {
       send: (channel: string, data?: any) => void;
       on: (channel: string, func: (...args: any[]) => void) => void;

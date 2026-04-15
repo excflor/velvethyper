@@ -1,36 +1,46 @@
-# VelvetHyper: Pro-Grade Stealth Virtualization
+# 🚀 VelvetHyper: Pro-Grade Stealth Virtualization
 
-`VelvetHyper` is a hybrid monorepo for hardware spoofing and anti-cheat evasion. It aims to make VMware virtual machines indistinguishable from physical hardware.
-
-## Project Structure
-- `/apps`
-    - `cli_engine`: The primary command-line tool for Phase 1 (Python).
-    - `desktop_ui`: Future Electron-based dashboard.
-- `/libs`
-    - `spoofer_core`: Shared Python logic for VMX and Profiling.
-    - `native_utils`: Future C++ components for guest sanitization.
-    - `firmware_patcher`: Future UEFI/EDK2 components.
-- `/profiles`: Storage for your hardware identities (JSON).
-- `/docs`: Detailed architecture and roadmap.
-
-## Implementation Status
-- [x] **Phase 1: Core Engine** (Python logic & VMX hardening)
-- [x] **Phase 2: Firmware & Identity** (CPUID, SMBIOS, ACPI)
-- [x] **Phase 3: Guest & Verifier** (C++ Sanitizer and Stealth Audit)
-- [ ] **Phase 4: One-Click UI** (Electron Dashboard) [IN PROGRESS]
-
-## Quick Start
-1.  **Configure**: Place your `.vmx` file in the root.
-2.  **Harden**: `make run-cli`
-3.  **Module C: The Sanitizer (C++) [DONE]**
-    - One-time execution inside the guest to scrub registry markers and driver traces.
-    - Includes `VelvetVerifier` for in-guest stealth auditing.
-4.  **Module D: The Dashboard (Electron/React) [NEXT]**
-    - Professional "One-Click" interface to manage profiles, automate VMware lifecycle, and verify stealth status.
-- Python 3.8+
-- VMware Workstation/Player
-- Make (optional, but recommended)
+`VelvetHyper` is a high-performance mission-control suite for hypervisor hardening and anti-cheat evasion. It transforms standard VMware virtual machines into stealthy environments that are indistinguishable from physical hardware.
 
 ---
-> [!IMPORTANT]
-> Always backup your `.vmx` files before applying hardening.
+
+## 🏗️ Project Structure
+- **`apps/desktop_ui`**: The "Command Center" — A premium Electron/React dashboard for orchestration.
+- **`libs/spoofer_core`**: The Python hardening engine for deep VMX manipulation.
+- **`libs/native_utils`**: C++ Guest-side tools (Sanitizer, Verifier, and Ghost Launcher).
+- **`profiles`**: Store for your randomized hardware identities (**JSON**).
+- **`build`**: Primary directory for production-ready stealth payloads.
+
+---
+
+## ✅ Implementation Status
+- [x] **Phase 1: Core Engine** (Deep VMX Hardening)
+- [x] **Phase 2: Firmware & Identity** (CPUID, SMBIOS, ACPI Masking)
+- [x] **Phase 3: Guest & Verifier** (C++ Forensic Registry Scrubbing)
+- [x] **Phase 4: Command Center** (Integrated Electron Orchestrator)
+- [x] **Phase 5: Production Stealth** (Ghost Launcher & RDTSC Timing Evasion)
+
+---
+
+## 🛠️ Quick Start (Development)
+1.  **Install**: `npm install` in `apps/desktop_ui`
+2.  **Run**: `npm run dev` inside `apps/desktop_ui`
+3.  **Target**: Select your `.vmx`, Rotate Profile, and click **Initiate Deep Harden**.
+
+---
+
+## 📦 Production Usage
+If you have built the application using `npm run build:win`, you will find a **Portable Executable** in `dist/`.
+
+### 1. Host Hardening
+Run `VelvetHyper.exe` on your Host PC. Select your target VM, apply the hardening flags, and click **Package Guest Tools**.
+
+### 2. Guest Sanitization
+Copy the generated files from the `build/` folder into your Guest VM. Run `launcher.exe` as **Administrator**.
+- **Ghost Launcher**: This tool will silently uninstall hypervisor-aware drivers, scrub the registry, verify integrity, and then **self-delete** all traces from the Guest disk.
+
+### 3. Final Step
+**Reboot** your guest VM once the Ghost Launcher has finished its cleanup.
+
+---
+*VelvetHyper: Advanced Hypervisor Stealth & Orchestration Suite*
