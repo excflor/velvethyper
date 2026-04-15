@@ -6,7 +6,8 @@
       "bios_version": "3801",
       "bios_date": "03/15/2024",
       "mac_oui": "00:50:56",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "ASUS"
     },
     {
       "manufacturer": "Micro-Star International Co., Ltd.",
@@ -14,7 +15,8 @@
       "bios_version": "A.B0",
       "bios_date": "11/22/2024",
       "mac_oui": "D8:BB:C1",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "MSI"
     },
     {
       "manufacturer": "Gigabyte Technology Co., Ltd.",
@@ -22,7 +24,8 @@
       "bios_version": "F10",
       "bios_date": "01/10/2025",
       "mac_oui": "1C:1B:0D",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "GIGA"
     },
     {
       "manufacturer": "Alienware",
@@ -30,7 +33,8 @@
       "bios_version": "1.0.12",
       "bios_date": "06/05/2024",
       "mac_oui": "00:26:B9",
-      "type": "OEM Desktop"
+      "type": "OEM Desktop",
+      "serial_prefix": "ALWR"
     },
     {
       "manufacturer": "HP",
@@ -38,7 +42,8 @@
       "bios_version": "F.21",
       "bios_date": "09/12/2024",
       "mac_oui": "3C:D9:2B",
-      "type": "OEM Desktop"
+      "type": "OEM Desktop",
+      "serial_prefix": "HP"
     },
     {
       "manufacturer": "Lenovo",
@@ -46,7 +51,8 @@
       "bios_version": "O4LKT19A",
       "bios_date": "12/01/2024",
       "mac_oui": "6C:2B:59",
-      "type": "OEM Desktop"
+      "type": "OEM Desktop",
+      "serial_prefix": "LNV"
     },
     {
       "manufacturer": "EVGA Corporation",
@@ -54,7 +60,8 @@
       "bios_version": "2.04",
       "bios_date": "02/20/2024",
       "mac_oui": "00:1F:D0",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "EVGA"
     },
     {
       "manufacturer": "Razer",
@@ -62,7 +69,8 @@
       "bios_version": "2.01",
       "bios_date": "05/18/2024",
       "mac_oui": "00:1C:C0",
-      "type": "Enthusiast Laptop"
+      "type": "Enthusiast Laptop",
+      "serial_prefix": "RZR"
     },
     {
       "manufacturer": "Micro-Star International Co., Ltd.",
@@ -70,7 +78,8 @@
       "bios_version": "E17S1IMS.112",
       "bios_date": "08/10/2024",
       "mac_oui": "00:D8:61",
-      "type": "Enthusiast Laptop"
+      "type": "Enthusiast Laptop",
+      "serial_prefix": "MSI"
     },
     {
       "manufacturer": "ASUSTeK COMPUTER INC.",
@@ -78,7 +87,8 @@
       "bios_version": "312",
       "bios_date": "10/05/2024",
       "mac_oui": "08:62:66",
-      "type": "Enthusiast Laptop"
+      "type": "Enthusiast Laptop",
+      "serial_prefix": "ASUS"
     },
     {
       "manufacturer": "Dell Inc.",
@@ -86,7 +96,8 @@
       "bios_version": "1.10.0",
       "bios_date": "12/12/2024",
       "mac_oui": "EC:B1:D7",
-      "type": "Workstation"
+      "type": "Workstation",
+      "serial_prefix": "DELL"
     },
     {
       "manufacturer": "Gigabyte Technology Co., Ltd.",
@@ -94,7 +105,8 @@
       "bios_version": "FA3",
       "bios_date": "02/28/2025",
       "mac_oui": "E0:D5:5E",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "GIGA"
     },
     {
       "manufacturer": "Micro-Star International Co., Ltd.",
@@ -102,7 +114,8 @@
       "bios_version": "2.D0",
       "bios_date": "01/15/2024",
       "mac_oui": "D8:BB:C1",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "MSI"
     },
     {
       "manufacturer": "ASRock Inc.",
@@ -110,7 +123,8 @@
       "bios_version": "2.10",
       "bios_date": "11/02/2024",
       "mac_oui": "70:85:C2",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "ASRK"
     },
     {
       "manufacturer": "Lenovo",
@@ -118,7 +132,8 @@
       "bios_version": "S07KT59A",
       "bios_date": "07/19/2024",
       "mac_oui": "D4:81:D7",
-      "type": "Workstation"
+      "type": "Workstation",
+      "serial_prefix": "LNV"
     },
     {
       "manufacturer": "Acer",
@@ -126,7 +141,8 @@
       "bios_version": "R01-A4",
       "bios_date": "03/10/2024",
       "mac_oui": "08:9E:01",
-      "type": "OEM Desktop"
+      "type": "OEM Desktop",
+      "serial_prefix": "ACER"
     },
     {
       "manufacturer": "Framework",
@@ -134,7 +150,8 @@
       "bios_version": "03.02",
       "bios_date": "01/22/2025",
       "mac_oui": "FC:B1:E3",
-      "type": "Enthusiast Laptop"
+      "type": "Enthusiast Laptop",
+      "serial_prefix": "FRMW"
     },
     {
       "manufacturer": "Micro-Star International Co., Ltd.",
@@ -142,7 +159,8 @@
       "bios_version": "E15F1IMS.106",
       "bios_date": "04/05/2024",
       "mac_oui": "00:D8:61",
-      "type": "Enthusiast Laptop"
+      "type": "Enthusiast Laptop",
+      "serial_prefix": "MSI"
     },
     {
       "manufacturer": "NZXT",
@@ -150,7 +168,8 @@
       "bios_version": "6.01",
       "bios_date": "08/18/2024",
       "mac_oui": "D0:D0:03",
-      "type": "Enthusiast Desktop"
+      "type": "Enthusiast Desktop",
+      "serial_prefix": "NZXT"
     },
     {
       "manufacturer": "Alienware",
@@ -158,7 +177,8 @@
       "bios_version": "1.13.1",
       "bios_date": "11/20/2024",
       "mac_oui": "00:26:B9",
-      "type": "OEM Laptop"
+      "type": "OEM Laptop",
+      "serial_prefix": "ALWR"
     }
   ]
 }

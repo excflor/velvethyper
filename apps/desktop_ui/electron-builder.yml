@@ -50,3 +50,7 @@ extraResources:
       - "!**/__pycache__"
       - "!**/*.o"
       - "!**/*.exe"
+  - from: ../../apps/cli_engine
+    to: apps/cli_engine
+    filter:
+      - "**/*.py"
