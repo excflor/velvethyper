@@ -75,7 +75,11 @@ app.whenReady().then(() => {
 
   ipcMain.handle('rotate-profile', async () => {
      console.log('[Main] Rotating Hardware Profile...')
-     return { success: true, profile: 'ASUSTeK COMPUTER INC. / ROG STRIX B550-F' }
+     const manufacturers = ['Gigabyte Technology', 'Micro-Star International', 'ASUSTeK COMPUTER INC.', 'EVGA Corporation'];
+     const models = ['Z790 AORUS ELITE', 'MPG Z690 FORCE', 'ROG MAXIMUS XIII', 'X570 FTW3'];
+     const randM = manufacturers[Math.floor(Math.random() * manufacturers.length)];
+     const randModel = models[Math.floor(Math.random() * models.length)];
+     return { success: true, profile: `${randM} / ${randModel}` }
   })
 
   let watchdog: fs.FSWatcher | null = null
