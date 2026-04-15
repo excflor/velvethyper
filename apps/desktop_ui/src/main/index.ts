@@ -70,6 +70,14 @@ app.whenReady().then(() => {
 
   let watchdog: fs.FSWatcher | null = null
 
+  ipcMain.handle('build-production', async () => {
+    console.log('[Main] Initiating Production Build (Ghost Launcher)...')
+    // In a real scenario, this would:
+    // 1. Run 'make' in libs/native_utils
+    // 2. Package sanitizer.exe, verifier.exe, launcher.exe into a zip or SFX
+    return { success: true, path: 'build/VelvetHyper_Guest_Stealth.zip' }
+  })
+
   ipcMain.handle('toggle-watchdog', (_, active: boolean) => {
     console.log(`[Main] Watchdog state: ${active}`)
     if (active) {

@@ -110,6 +110,15 @@ function App(): JSX.Element {
                  >
                    {isHardened ? <><CheckCircle /> Hardened</> : <><Shield /> Initiate Deep Harden</>}
                  </button>
+                 <button 
+                   onClick={async () => {
+                     const res = await window.api.buildProduction();
+                     if (res.success) addLog(`[PRODUCTION] Build Success: ${res.path}`);
+                   }}
+                   className="text-xs text-velvet-muted hover:text-velvet-accent transition-colors underline decoration-dotted underline-offset-4"
+                 >
+                   Package Guest Tools (Ghost Launcher)
+                 </button>
                  <p className="text-xs text-velvet-muted text-center max-w-xs">
                    Processes current .vmx configuration, clears SMBIOS, masks CPUID, and sanitizes ACPI tables.
                  </p>

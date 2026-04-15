@@ -76,10 +76,19 @@ class VMXHardener:
         }
         self.config.update(isolation_flags)
 
-        # 6. Time & Sync Evasion (Prevents detection via clock skew/sync)
+        # 6. Deep Timing & RDTSC Evasion (Phase 5: Production)
+        # Bypasses "Timing Attacks" by exposing the host hardware TSC directly
+        self.config["monitor_control.virtual_rdtsc"] = "FALSE"
+        self.config["monitor_control.restrict_backdoor"] = "TRUE"
+        self.config["monitor_control.vt32"] = "TRUE"
+        self.config["monitor_control.enable_extended_hv"] = "TRUE"
+        
+        # 7. Time & Sync Evasion (Prevents detection via clock skew/sync)
         self.config["tools.syncTime"] = "FALSE"
         self.config["time.synchronize.continue"] = "FALSE"
         self.config["time.synchronize.restore"] = "FALSE"
         self.config["time.synchronize.resume.disk"] = "FALSE"
         self.config["time.synchronize.shrink"] = "FALSE"
         self.config["time.synchronize.tools.startup"] = "FALSE"
+        self.config["time.synchronize.tools.enable"] = "FALSE"
+        self.config["time.synchronize.resume.host"] = "FALSE"

@@ -55,6 +55,25 @@ void ScrubServices() {
     CloseServiceHandle(hSCM);
 }
 
+void UninstallVMwareTools() {
+    std::cout << "[*] Attempting silent uninstallation of VMware Tools..." << std::endl;
+    // Robust method: Use WMIC to find and uninstall by name
+    // command: wmic product where "name like 'VMware Tools%%'" call uninstall /nointeractive
+    STARTUPINFOA si = { sizeof(si) };
+    PROCESS_INFORMATION pi;
+    char cmd[] = "cmd.exe /c wmic product where \"name like 'VMware Tools%%'\" call uninstall /nointeractive";
+    
+    if (CreateProcessA(NULL, cmd, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)) {
+        std::cout << COLOR_YELLOW << "[!] Uninstallation triggered. Please wait (this may take 2 minutes)..." << COLOR_RESET << std::endl;
+        WaitForSingleObject(pi.hProcess, 120000); // Wait up to 2 minutes
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+        std::cout << COLOR_GREEN << "[+] Uninstallation process completed." << COLOR_RESET << std::endl;
+    } else {
+        std::cout << COLOR_RED << "[-] Failed to trigger uninstallation." << COLOR_RESET << std::endl;
+    }
+}
+
 int main() {
     PrintBanner();
     ShowWarning();
@@ -67,6 +86,9 @@ int main() {
     }
 
     std::cout << "[*] Starting deep sanitization..." << std::endl;
+
+    // 0. Uninstall VMware Tools (MSI)
+    UninstallVMwareTools();
 
     // 1. Scrub Services (SCM)
     ScrubServices();
