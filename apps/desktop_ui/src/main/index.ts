@@ -157,6 +157,10 @@ app.whenReady().then(() => {
     return { status: active ? 'active' : 'inactive' }
   })
 
+  ipcMain.handle('get-app-version', () => {
+    return app.getVersion();
+  })
+
   createWindow()
 
   app.on('activate', function () {

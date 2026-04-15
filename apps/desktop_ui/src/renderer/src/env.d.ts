@@ -21,5 +21,6 @@ interface Window {
     toggleWatchdog: (active: boolean) => Promise<{ status: string }>;
     buildProduction: () => Promise<{ success: boolean; path: string }>;
     selectVMX: () => Promise<string | null>;
+    getAppVersion: () => Promise<string>;
   };
 }

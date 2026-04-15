@@ -12,6 +12,11 @@ function App(): React.ReactElement {
     mac: "BC:AE:C5:B6:1F:7C"
   });
   const [logs, setLogs] = useState<string[]>(["[*] System Initialized.", "[*] Ready for hardening."]);
+  const [appVersion, setAppVersion] = useState<string>("1.0.0");
+
+  React.useEffect(() => {
+    window.api.getAppVersion().then(v => setAppVersion(v));
+  }, []);
 
   const addLog = (msg: string) => {
     setLogs(prev => [...prev.slice(-100), `[${new Date().toLocaleTimeString()}] ${msg}`]);
@@ -89,7 +94,7 @@ function App(): React.ReactElement {
         <div className="absolute top-0 left-0 right-0 h-32 bg-velvet-bg/80 backdrop-blur-xl z-30 border-b border-white/5 px-8 pt-10 flex justify-between items-end pb-4">
            <div>
               <h1 className="text-4xl font-bold tracking-tight mb-1">
-                Command Center
+                Command Center <span className="text-sm font-mono opacity-20 align-top ml-2">v{appVersion}</span>
               </h1>
               <p className="text-velvet-muted text-xs uppercase tracking-widest font-bold opacity-60">
                 VelvetHyper Stealth Orchestrator

@@ -6,7 +6,8 @@ const api = {
   rotateProfile: () => ipcRenderer.invoke('rotate-profile'),
   toggleWatchdog: (active: boolean) => ipcRenderer.invoke('toggle-watchdog', active),
   buildProduction: () => ipcRenderer.invoke('build-production'),
-  selectVMX: () => ipcRenderer.invoke('select-vmx')
+  selectVMX: () => ipcRenderer.invoke('select-vmx'),
+  getAppVersion: () => ipcRenderer.invoke('get-app-version')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
