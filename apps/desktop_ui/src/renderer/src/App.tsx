@@ -81,6 +81,10 @@ function App(): React.ReactElement {
       if (path) {
         setVmxPath(path);
         addLog(`[TARGET] Selected VMX: ${path.split('\\').pop()}`);
+        
+        // Auto-detect Hardening Status
+        const status = await window.api.checkVMXStatus(path);
+        setIsHardened(status.isHardened);
       }
     } catch (err) {
       addLog(`ERROR: ${err}`);

@@ -93,6 +93,29 @@ class VMXHardener:
         self.config["time.synchronize.tools.enable"] = "FALSE"
         self.config["time.synchronize.resume.host"] = "FALSE"
 
+    def verify_stealth(self):
+        """
+        Verifies if the loaded config matches the VelvetHyper "Stealth" signature.
+        Checks for a subset of critical hardening flags.
+        """
+        critical_flags = {
+            "smbios.reflectHost": "FALSE",
+            "monitor_control.restrict_backdoor": "TRUE",
+            "isolation.tools.copy.disable": "TRUE",
+            "acpi.passthrough": "TRUE"
+        }
+        
+        for key, expected in critical_flags.items():
+            if self.config.get(key) != expected:
+                return False
+        
+        # Check for CPUID pattern if present
+        if "cpuid.1.ecx" in self.config:
+            if not self.config["cpuid.1.ecx"].endswith("0"):
+                return False
+                
+        return True
+
 if __name__ == "__main__":
     import sys
     import uuid
@@ -101,8 +124,29 @@ if __name__ == "__main__":
     from pathlib import Path
 
     if len(sys.argv) < 2:
-        print("Usage: python vmx_hardener.py <path_to_vmx>")
+        print("Usage: python vmx_hardener.py [--check] <path_to_vmx>")
         sys.exit(1)
+
+    # Handle --check mode
+    check_mode = False
+    vmx_target = sys.argv[1]
+    
+    if vmx_target == "--check":
+        check_mode = True
+        if len(sys.argv) < 3:
+            print("Error: Missing VMX path for check")
+            sys.exit(1)
+        vmx_target = sys.argv[2]
+    
+    hardener = VMXHardener(vmx_target)
+    hardener.read_config()
+
+    if check_mode:
+        if hardener.verify_stealth():
+            print("STATUS: HARDENED")
+        else:
+            print("STATUS: UNHARDENED")
+        sys.exit(0)
 
     # 0. Locate Hardware Profiles Database
     script_dir = Path(__file__).parent
@@ -142,9 +186,6 @@ if __name__ == "__main__":
     }
 
     # 3. Apply Hardening
-    vmx_target = sys.argv[1]
-    hardener = VMXHardener(vmx_target)
-    hardener.read_config()
     hardener.apply_stealth_profile(stealth_profile)
     hardener.write_config()
     

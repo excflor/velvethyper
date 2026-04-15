@@ -17,7 +17,8 @@ interface Window {
   };
   api: {
     hardenVM: (vmxPath: string) => Promise<{ success: boolean; message: string }>;
-    rotateProfile: () => Promise<{ success: boolean; profile: string }>;
+    checkVMXStatus: (vmxPath: string) => Promise<{ isHardened: boolean }>;
+    rotateProfile: () => Promise<{ success: boolean; profile: string; type: string }>;
     toggleWatchdog: (active: boolean) => Promise<{ status: string }>;
     buildProduction: () => Promise<{ success: boolean; path: string }>;
     selectVMX: () => Promise<string | null>;

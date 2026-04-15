@@ -109,6 +109,33 @@ app.whenReady().then(() => {
     }
   })
 
+  ipcMain.handle('check-vmx-status', async (_, vmxPath: string) => {
+    const { exec } = require('child_process');
+    const util = require('util');
+    const execPromise = util.promisify(exec);
+    
+    const libsPath = getLibsPath();
+    const enginePath = join(libsPath, 'spoofer_core/vmx_hardener.py');
+    const isPackaged = app.isPackaged;
+    const baseDir = isPackaged ? process.resourcesPath : join(__dirname, '../../../../');
+
+    try {
+      if (!vmxPath) return { isHardened: false };
+      
+      const { stdout } = await execPromise(`python "${enginePath}" --check "${vmxPath}"`, {
+        env: { ...process.env, PYTHONPATH: baseDir },
+        cwd: baseDir
+      });
+      
+      const isHardened = stdout.includes('STATUS: HARDENED');
+      console.log(`[Main] VMX Status check for ${vmxPath}: ${isHardened ? 'HARDENED' : 'CLEAN'}`);
+      return { isHardened };
+    } catch (error: any) {
+      console.error(`[Main] Status Check FAILED: ${error.message}`);
+      return { isHardened: false };
+    }
+  })
+
   ipcMain.handle('rotate-profile', async () => {
      console.log('[Main] Rotating Hardware Profile...')
      
