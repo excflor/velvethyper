@@ -26,4 +26,5 @@ Thumbs.db
 *.vmsn
 *.vmsd
 *.nvram
+*.exe
 !profiles/*.json

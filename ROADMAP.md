@@ -6,10 +6,10 @@
 - [x] CLI Wrapper: One-Click generate & patch (`apps/cli_engine`).
 - [x] Monorepo Restructuring: Best practice architecture (apps/libs).
 
-### Phase 2: Firmware & Identity (The Core) [NEXT]
-- [ ] CPU Masking (CPUID spoofing fine-tuning).
-- [ ] SMBIOS Patcher (Custom BIOS strings in firmware).
-- [ ] ACPI Sanitization (Scrub "VMWARE" from memory tables).
+### Phase 2: Firmware & Identity (The Core) [DONE]
+- [x] CPU Masking (CPUID spoofing fine-tuning).
+- [x] SMBIOS Patcher (Custom BIOS strings in firmware).
+- [x] ACPI Sanitization (Scrub "VMWARE" from memory tables).
 
 ### Phase 3: Guest & Verifier (The Stealth)
 - [ ] Guest Sanitizer (C++ registry & driver cleaning in `libs/native_utils`).
