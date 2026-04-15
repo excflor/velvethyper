@@ -1,0 +1,3 @@
+# VelvetHyper Requirements
+# Standard Library only for now (json, random, uuid, os, re)
+# Future: requests (for remote profile sync), flask/fastapi (for UI backend)

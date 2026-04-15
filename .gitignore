@@ -1,0 +1,29 @@
+# VelvetHyper GitIgnore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Desktop UI (Node/Electron)
+node_modules/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VMware / Spoofer
+*.log
+*.vmem
+*.vmsn
+*.vmsd
+*.nvram
+!profiles/*.json

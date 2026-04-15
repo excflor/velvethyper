@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "velvethyper"
+version = "0.1.0"
+description = "Pro-Grade Stealth Virtualization Spoofer"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    # Core dependencies from requirements.txt
+    "colorama>=0.4.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["libs"]
+include = ["*"]
+
+[tool.setuptools.package-dir]
+"" = "."
+"spoofer_core" = "libs/spoofer_core"
+
+[project.scripts]
+velvethyper = "apps.cli_engine.main:main"
