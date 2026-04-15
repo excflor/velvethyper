@@ -67,10 +67,31 @@ app.whenReady().then(() => {
     return filePaths[0]
   })
 
-  ipcMain.handle('harden-vm', async () => {
-    // Logic to spawn python apps/cli_engine/main.py
-    console.log('[Main] Triggering VM Hardening...')
-    return { success: true, message: 'Hardening Complete' }
+  ipcMain.handle('harden-vm', async (_, vmxPath: string) => {
+    const { exec } = require('child_process');
+    const util = require('util');
+    const execPromise = util.promisify(exec);
+    
+    // Path to python engine
+    const projectRoot = join(__dirname, '../../../../'); 
+    const enginePath = join(projectRoot, 'libs/spoofer_core/vmx_hardener.py');
+
+    console.log(`[Main] Hardening VM: ${vmxPath} using ${enginePath}`);
+    
+    try {
+      if (!vmxPath) throw new Error("No VMX file selected");
+      
+      // Execute the python script with the vmx path as argument
+      const { stdout, stderr } = await execPromise(`python "${enginePath}" "${vmxPath}"`);
+      
+      if (stderr && !stdout) throw new Error(stderr);
+      
+      console.log(`[Main] Hardening SUCCESS: ${stdout}`);
+      return { success: true, message: 'Hardening Complete: 42 Flags Applied' };
+    } catch (error: any) {
+      console.error(`[Main] Hardening FAILED: ${error.message}`);
+      return { success: false, message: error.message };
+    }
   })
 
   ipcMain.handle('rotate-profile', async () => {

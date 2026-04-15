@@ -19,10 +19,16 @@ function App(): React.ReactElement {
 
   const toggleHardening = async () => {
     try {
-      const result = await window.api.hardenVM();
+      if (!vmxPath) {
+        addLog("ERROR: No VMX Target Selected.");
+        return;
+      }
+      const result = await window.api.hardenVM(vmxPath);
       if (result.success) {
         setIsHardened(true);
         addLog(result.message || "VM Hardening SUCCESS: 42 flags applied.");
+      } else {
+        addLog(`ERROR: ${result.message}`);
       }
     } catch (err) {
       addLog(`ERROR: ${err}`);
