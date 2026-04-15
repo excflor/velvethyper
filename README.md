@@ -1,5 +1,7 @@
 # 🚀 VelvetHyper: Pro-Grade Stealth Virtualization
 
+![Dashboard Preview](docs/assets/dashboard_preview.png)
+
 `VelvetHyper` is a high-performance mission-control suite for hypervisor hardening and anti-cheat evasion. It transforms standard VMware virtual machines into stealthy environments that are indistinguishable from physical hardware.
 
 ---
