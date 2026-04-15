@@ -23,7 +23,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postbump": "git add ../../ROADMAP.md ../../README.md"
+      "postbump": "python ../../scripts/bump_readme.py && git add ../../ROADMAP.md ../../README.md || true"
     }
   },
   "dependencies": {
