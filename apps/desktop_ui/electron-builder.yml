@@ -1,5 +1,6 @@
 appId: com.electron.app
 productName: apps-desktop-ui
+icon: build/icon.ico
 directories:
   buildResources: build
 files:
