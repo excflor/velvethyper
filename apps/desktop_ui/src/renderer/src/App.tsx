@@ -91,13 +91,6 @@ function App(): JSX.Element {
             <p className="text-velvet-muted">Pro-Grade Stealth Virtualization & Anti-Cheat Evasion</p>
           </div>
           <div className="flex flex-col items-end gap-3">
-            <button 
-              onClick={handleSelectVMX}
-              className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm font-medium hover:bg-white/10 transition-all text-velvet-muted hover:text-white"
-            >
-              <Box size={16} className="text-velvet-accent" />
-              {vmxPath ? vmxPath.split('\\').pop() : "SELECT TARGET VM"}
-            </button>
             <div className={`status-badge ${isHardened ? 'status-online' : 'status-offline'}`}>
                <div className={`w-2 h-2 rounded-full ${isHardened ? 'bg-velvet-accent' : 'bg-red-500'} animate-pulse`} />
                {isHardened ? 'SYSTEM STEALTH: ACTIVE' : 'SYSTEM STEALTH: INACTIVE'}
@@ -110,9 +103,17 @@ function App(): JSX.Element {
             {/* Main Action Card */}
             <div className="col-span-8 row-span-2 bento-card flex flex-col">
               <div className="flex justify-between items-start mb-4">
-                 <h2 className="text-xl font-bold flex items-center gap-2">
-                   <Zap className="text-velvet-accent" /> Hardening Control
-                 </h2>
+                 <div className="flex flex-col gap-1">
+                    <h2 className="text-xl font-bold flex items-center gap-2">
+                      <Zap className="text-velvet-accent" /> Hardening Control
+                    </h2>
+                    <button 
+                      onClick={handleSelectVMX}
+                      className="text-[10px] uppercase tracking-widest text-velvet-muted hover:text-velvet-accent transition-colors flex items-center gap-1 group"
+                    >
+                      Target: <span className="text-white group-hover:text-velvet-accent transition-colors">{vmxPath ? vmxPath.split('\\').pop() : "NONE SELECTED"}</span>
+                    </button>
+                 </div>
                  <div className="flex items-center gap-2 bg-white/5 p-1 rounded-lg">
                     <span className="text-xs px-2 text-velvet-muted">Auto-Watchdog</span>
                     <button 

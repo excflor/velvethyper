@@ -1,60 +1,30 @@
-# 🦾 VelvetHyper Operational Guide
+# 🚀 VelvetHyper: 3-Step Stealth Guide
 
-Follow these steps to successfully harden your VMware environment and ensure maximum stealth against kernel-level anti-cheats.
-
----
-
-## 🛠️ Phase 1: Host-Side Preparation (The Dashboard)
-
-### 1. Launch the Dashboard
-Open your terminal in the project root and start the Electron interface:
-```bash
-cd apps/desktop_ui
-npm run dev
-```
-
-### 2. Configure Your Identity
-- **Rotate Profile**: Click the **"Rotate Profile"** button until you find a hardware configuration (Manufacturer, Model, MAC) that feels natural.
-- **Select VM**: Point the dashboard to your target `.vmx` file (Watchdog mode will handle this automatically if enabled).
-
-### 3. Initiate Hardening
-Click **"Initiate Deep Harden"**. 
-> [!IMPORTANT]
-> This process injects the Phase 5 **RDTSC Timing Evasion** and **Hypervisor Backdoor Restrictions** into your VM configuration. The VM must be **POWERED OFF** during this step.
-
-### 4. Package Guest Payload
-Click **"Package Guest Tools (Ghost Launcher)"**. This will generate a production-ready package in your `build/` folder containing:
-- `launcher.exe` (The Ghost Launcher)
-- `sanitizer.exe` (The Hardware Scrubber)
-- `verifier.exe` (The Auditor)
+Follow this simplified sequence for maximum anti-cheat evasion.
 
 ---
 
-## 👻 Phase 2: Guest-Side Sanitization (Inside the VM)
+## 💻 Step 1: Host Preparation (Your Main PC)
 
-### 1. Transfer the Payload
-Move the generated `launcher.exe`, `sanitizer.exe`, and `verifier.exe` into your Guest VM (e.g., via a USB drive or temporary network share).
-
-### 2. Run the Ghost Launcher
-Right-click `launcher.exe` and select **Run as Administrator**.
-
-> [!CAUTION]
-> **What Happens Next:**
-> 1. **Automated Uninstall**: The tool will silently uninstall **VMware Tools**.
-> 2. **Hardware Scrubbing**: It will purge all VMware registry keys and drivers.
-> 3. **Verification**: It will run a final audit of your current hardware strings.
-> 4. **Self-Deletion**: 2 seconds after completion, the launcher will **permanently delete** all three files from your guest disk to leave zero traces.
-
-### 3. Final Reboot
-Once the files have disappeared, **REBOOT** your Guest VM.
+1.  **Target your VM**: Open the Dashboard (`npm run dev`), click **"Target: NONE SELECTED"** in the Hardening card, and select your `.vmx` file.
+2.  **Apply Hardening**: Ensure the VM is **OFF**, then click **"Initiate Deep Harden"**.
+3.  **Get Guest Payload**: Click **"Package Guest Tools"**. Copy the 3 files generated in the `build/` folder to your Guest VM.
 
 ---
 
-## 🛡️ Best Practices (OPSEC)
+## 👻 Step 2: Guest Scrubbing (Inside the VM)
 
-- **Always Uninstall VMware Tools**: Modern anti-cheats (like Vanguard/EAC) will flag the presence of VMware drivers (`.sys` files) even if the services are stopped. Use our automated uninstaller.
-- **Re-Harden After VMX Changes**: If you change any VM settings (RAM, CPU cores), re-run the **Hardening Control** on the host.
-- **Watchdog Mode**: Keep the **Auto-Watchdog** enabled in the dashboard to ensure your `.vmx` is always clean before the VM starts.
+1.  **Run Launcher**: Right-click `launcher.exe` and select **Run as Administrator**.
+2.  **Wait for Cleanup**: The tool will automatically uninstall VMware tools, scrub the registry, and then **self-delete** all 3 files.
+3.  **Reboot**: Once the files disappear, **REBOOT** the Guest VM immediately.
+
+---
+
+## ⚠️ Mission-Critical Tips (OPSEC)
+
+-   **Never skip the Reboot**: The stealth state is only fully active after the guest OS re-initializes its drivers without VMware artifacts.
+-   **Active Watchdog**: Keep **Auto-Watchdog** ON in the dashboard. It will auto-harden your VM if you accidentally change any settings in the VMware GUI.
+-   **Firmware Rotation**: Rotate your profile frequently to avoid "static identity" flagging across different game accounts.
 
 ---
 *VelvetHyper: Advanced Virtualization Stealth Suite*
