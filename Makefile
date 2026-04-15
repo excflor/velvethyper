@@ -1,32 +1,56 @@
-# VelvetHyper Root Makefile
-# Production-Grade Feature-based Root Orchestrator
+# 🚀 VelvetHyper: Master Orchestration Makefile
 
+# Project Configuration
 PYTHON = python
 PIP = pip
-CLI_DIR = apps/cli_engine
-LIBS_DIR = libs
+NPM = npm
+UI_DIR = apps/desktop_ui
+NATIVE_DIR = libs/native_utils
+ENGINE_DIR = libs/spoofer_core
 
-.PHONY: help install run-cli clean dev-install
+.PHONY: help install dev build-ui build-native clean harden
 
 help:
-	@echo "VelvetHyper - Precision Stealth VM"
-	@echo "================================"
-	@echo "make install      - Install Python dependencies"
-	@echo "make dev-install  - Install project in editable mode (production grade)"
-	@echo "make run-cli      - Run the One-Click CLI (Phase 1) from 'apps/cli_engine/'"
-	@echo "make clean        - Remove all temporary and duplicate files"
+	@echo "VelvetHyper: Stealth Virtualization Suite"
+	@echo "=========================================="
+	@echo "make install       - Install all Host & UI dependencies"
+	@echo "make dev           - Launch the Command Center (Dashboard)"
+	@echo "make build-ui      - Package the Portable Windows Executable"
+	@echo "make build-native  - Manually compile Guest Stealth Tools (MinGW)"
+	@echo "make harden        - Manual VMX hardening (requires VMX=path/to/vmx)"
+	@echo "make clean         - Deep cleanup of all build and cache files"
 
 install:
+	@echo "[*] Installing Host dependencies..."
 	$(PIP) install -r requirements.txt
+	@echo "[*] Installing UI dependencies..."
+	cd $(UI_DIR) && $(NPM) install
 
-dev-install:
-	$(PIP) install -e .
+dev:
+	@echo "[*] Launching VelvetHyper Command Center..."
+	cd $(UI_DIR) && $(NPM) run dev
 
-run-cli:
-	$(PYTHON) $(CLI_DIR)/main.py
+build-ui:
+	@echo "[*] Packaging Portable Windows Executive..."
+	cd $(UI_DIR) && $(NPM) run build:win
+
+build-native:
+	@echo "[*] Compiling Guest-side Stealth Payloads..."
+	$(MAKE) -C $(NATIVE_DIR)
+
+harden:
+	@echo "[*] Triggering manual hardening engine..."
+	$(PYTHON) $(ENGINE_DIR)/vmx_hardener.py "$(VMX)"
 
 clean:
-	# Removes Python caches
-	find . -type d -name "__pycache__" -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
-	# Note: Manual deletion of old folders (src/, libs/, apps/) is recommended if they persist.
+	@echo "[*] Performing forensic cleanup..."
+	# Python Caches
+	rm -rf **/(__pycache__|.pytest_cache)
+	rm -f **/*.pyc
+	# Build Artifacts
+	rm -rf build/
+	rm -rf dist/
+	rm -rf $(UI_DIR)/dist
+	rm -rf $(UI_DIR)/out
+	# Native Binaries
+	$(MAKE) -C $(NATIVE_DIR) clean
