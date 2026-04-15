@@ -28,12 +28,18 @@ function App(): React.ReactElement {
         addLog("ERROR: No VMX Target Selected.");
         return;
       }
-      const result = await window.api.hardenVM(vmxPath);
-      if (result.success) {
+      addLog("STEALTH MODULE: Initializing Deep Hardening...");
+      const res = await window.api.hardenVM(vmxPath);
+      if (res.success) {
         setIsHardened(true);
-        addLog(result.message || "VM Hardening SUCCESS: 42 flags applied.");
+        // Spilt multi-line output from python and log each line
+        const outputLines = res.message.split('\n');
+        outputLines.forEach(line => {
+          if (line.trim()) addLog(line.trim());
+        });
+        addLog("STEALTH MODULE: Protection Layer Solidified.");
       } else {
-        addLog(`ERROR: ${result.message}`);
+        addLog(`CRITICAL: ${res.message}`);
       }
     } catch (err) {
       addLog(`ERROR: ${err}`);

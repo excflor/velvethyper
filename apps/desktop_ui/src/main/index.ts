@@ -102,7 +102,7 @@ app.whenReady().then(() => {
       if (stderr && !stdout) throw new Error(stderr);
       
       console.log(`[Main] Hardening SUCCESS: ${stdout}`);
-      return { success: true, message: 'Hardening Complete: 42 Flags Applied' };
+      return { success: true, message: stdout };
     } catch (error: any) {
       console.error(`[Main] Hardening FAILED: ${error.message}`);
       return { success: false, message: error.message };
