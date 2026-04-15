@@ -6,6 +6,12 @@ function App(): JSX.Element {
   const [isHardened, setIsHardened] = useState(false);
   const [isWatchdogActive, setIsWatchdogActive] = useState(false);
   const [vmxPath, setVmxPath] = useState<string | null>(null);
+  const [currentProfile, setCurrentProfile] = useState({
+    manufacturer: "ASUSTeK COMPUTER INC.",
+    model: "ROG STRIX B550-F",
+    serial: "40D25UY46128SJD2",
+    mac: "BC:AE:C5:B6:1F:7C"
+  });
   const [logs, setLogs] = useState<string[]>(["[*] System Initialized.", "[*] Ready for hardening."]);
 
   const addLog = (msg: string) => {
@@ -28,6 +34,14 @@ function App(): JSX.Element {
     try {
       const result = await window.api.rotateProfile();
       if (result.success) {
+        // Mocking the parse for demonstration, in real it would return the full object
+        const parts = result.profile.split(' / ');
+        setCurrentProfile({
+          manufacturer: parts[0] || "Unknown",
+          model: parts[1] || "Unknown",
+          serial: Math.random().toString(36).substring(2, 15).toUpperCase(),
+          mac: Array.from({length: 6}, () => Math.floor(Math.random()*256).toString(16).toUpperCase().padStart(2, '0')).join(':')
+        });
         addLog(`Profile Rotated: ${result.profile}`);
       }
     } catch (err) {
@@ -153,10 +167,10 @@ function App(): JSX.Element {
                    <Cpu className="text-velvet-accent" /> Current Profile
                 </h2>
                 <div className="space-y-4">
-                   <ProfileItem label="Manufacturer" value="ASUSTeK COMPUTER INC." />
-                   <ProfileItem label="Model" value="ROG STRIX B550-F" />
-                   <ProfileItem label="Serial" value="40D25UY46128SJD2" />
-                   <ProfileItem label="MAC" value="BC:AE:C5:B6:1F:7C" />
+                   <ProfileItem label="Manufacturer" value={currentProfile.manufacturer} />
+                   <ProfileItem label="Model" value={currentProfile.model} />
+                   <ProfileItem label="Serial" value={currentProfile.serial} />
+                   <ProfileItem label="MAC" value={currentProfile.mac} />
                 </div>
               </div>
               <div className="mt-auto pt-6">
