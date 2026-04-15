@@ -92,7 +92,7 @@ app.whenReady().then(() => {
     console.log(`[Main] Watchdog state: ${active}`)
     if (active) {
       const watchPath = join(app.getAppPath(), '../../') // Project root
-      watchdog = fs.watch(watchPath, (eventType, filename) => {
+      watchdog = fs.watch(watchPath, (_eventType, filename) => {
         if (filename && filename.endsWith('.vmx')) {
           console.log(`[Watchdog] Detected change in ${filename}. Re-applying hardening...`)
           // In a real scenario, this would spawn the python process

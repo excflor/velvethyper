@@ -1,7 +1,7 @@
-import { Box, Shield, Zap, Cpu, Activity, Settings, List, CheckCircle, AlertTriangle } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Box, Shield, Zap, Cpu, Activity, Settings, List, CheckCircle } from 'lucide-react';
 
-function App(): JSX.Element {
+function App(): React.ReactElement {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isHardened, setIsHardened] = useState(false);
   const [isWatchdogActive, setIsWatchdogActive] = useState(false);
