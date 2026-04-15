@@ -92,3 +92,36 @@ class VMXHardener:
         self.config["time.synchronize.tools.startup"] = "FALSE"
         self.config["time.synchronize.tools.enable"] = "FALSE"
         self.config["time.synchronize.resume.host"] = "FALSE"
+
+if __name__ == "__main__":
+    import sys
+    import uuid
+    import random
+
+    if len(sys.argv) < 2:
+        print("Usage: python vmx_hardener.py <path_to_vmx>")
+        sys.exit(1)
+
+    vmx_target = sys.argv[1]
+    hardener = VMXHardener(vmx_target)
+    
+    # 1. Load existing config
+    hardener.read_config()
+    
+    # 2. Generate a random "High-Tier" Stealth Profile
+    stealth_profile = {
+        "model": "ROG MAXIMUS XIII EXTREME",
+        "serial": f"ASUS-{uuid.uuid4().hex[:12].upper()}",
+        "board_id": f"MB-{uuid.uuid4().hex[:8].upper()}",
+        "hardware_uuid": str(uuid.uuid4()),
+        "bios_version": "3801",
+        "bios_date": "03/15/2024",
+        "manufacturer": "ASUSTeK COMPUTER INC.",
+        "mac_address": f"00:50:56:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}:{random.getrandbits(8):02X}"
+    }
+    
+    # 3. Apply and Write
+    hardener.apply_stealth_profile(stealth_profile)
+    hardener.write_config()
+    
+    print(f"[*] VelvetHyper Hardening Success: 42 flags applied to {vmx_target}")
