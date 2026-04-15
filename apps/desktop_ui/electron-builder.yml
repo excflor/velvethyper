@@ -46,11 +46,11 @@ extraResources:
   - from: ../../libs
     to: libs
     filter:
-      - "**/*"
-      - "!**/__pycache__"
-      - "!**/*.o"
-      - "!**/*.exe"
+      - '**/*'
+      - '!**/__pycache__'
+      - '!**/*.o'
+      - '!**/*.exe'
   - from: ../../apps/cli_engine
     to: apps/cli_engine
     filter:
-      - "**/*.py"
+      - '**/*.py'

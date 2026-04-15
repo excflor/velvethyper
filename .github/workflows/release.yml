@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: apps/desktop_ui/package-lock.json
 
@@ -32,7 +32,7 @@ jobs:
         run: npm run build:win
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: apps/desktop_ui/dist/*.exe
           generate_release_notes: true

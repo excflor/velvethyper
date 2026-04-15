@@ -4,9 +4,7 @@ import { randomUUID } from 'crypto'
 import { app, IpcMain } from 'electron'
 
 const getLibsPath = (): string =>
-  app.isPackaged
-    ? join(process.resourcesPath, 'libs')
-    : join(__dirname, '../../../../libs')
+  app.isPackaged ? join(process.resourcesPath, 'libs') : join(__dirname, '../../../../libs')
 
 export function registerProfileHandlers(ipcMain: IpcMain): void {
   ipcMain.handle('rotate-profile', async () => {
@@ -25,11 +23,17 @@ export function registerProfileHandlers(ipcMain: IpcMain): void {
       const p = profiles[Math.floor(Math.random() * profiles.length)]
 
       // Generate all hardware identifiers on the backend — these WILL be applied to the VMX
-      const hexSegment = () => Math.floor(Math.random() * 256).toString(16).toUpperCase().padStart(2, '0')
+      const hexSegment = () =>
+        Math.floor(Math.random() * 256)
+          .toString(16)
+          .toUpperCase()
+          .padStart(2, '0')
       const serialPrefix = p.serial_prefix ?? 'HW'
       const randomHex12 = Array.from({ length: 12 }, () =>
         Math.floor(Math.random() * 16).toString(16)
-      ).join('').toUpperCase()
+      )
+        .join('')
+        .toUpperCase()
       const macSuffix = `${hexSegment()}:${hexSegment()}:${hexSegment()}`
       const boardId = `MB-${randomUUID().replace(/-/g, '').substring(0, 8).toUpperCase()}`
 

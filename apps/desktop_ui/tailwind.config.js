@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/renderer/index.html",
-    "./src/renderer/src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./src/renderer/index.html', './src/renderer/src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -16,12 +13,12 @@ module.exports = {
       },
       fontFamily: {
         mono: ['Fira Code', 'monospace'],
-        sans: ['Fira Sans', 'sans-serif'],
+        sans: ['Fira Sans', 'sans-serif']
       },
       animation: {
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }
