@@ -1,6 +1,6 @@
 {
   "name": "velvethyper",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Pro-Grade Hypervisor Stealth & Orchestration Suite",
   "main": "./out/main/index.js",
   "author": "example.com",
@@ -22,6 +22,7 @@
     "release": "standard-version"
   },
   "standard-version": {
+    "commitAll": true,
     "scripts": {
       "postbump": "python ../../scripts/bump_readme.py && git add ../../ROADMAP.md ../../README.md || true"
     }
